@@ -5,8 +5,8 @@ website:
   title: "Yazvinskaya Anastasia - Data Science Portfolio"
   favicon: Images/favicon.png
   back-to-top-navigation: true
-  repo-url: https://github.com/yaz19001
-  issue-url: https://github.com/your_url/issues/new
+  repo-url: https://github.com/AnastasiaYazvinskaya/yazvinskaya_fa24
+  issue-url: https://github.com/AnastasiaYazvinskaya/yazvinskaya_fa24/issues/new
   repo-actions: [issue]
 
   page-footer: 
@@ -14,7 +14,7 @@ website:
     left: "Yazvinskaya Anastasia 2024©"
     right: 
       - icon: linkedin
-        href: https://github.com/yaz19001
+        href: https://github.com/AnastasiaYazvinskaya/yazvinskaya_fa24
 
   navbar:
     background: primary
