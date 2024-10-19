@@ -51,7 +51,7 @@
   {
     "objectID": "250_Projects/project1.html",
     "href": "250_Projects/project1.html",
-    "title": "Client Report - [Insert Project Title]",
+    "title": "Client Report - What’s in a Name?",
     "section": "",
     "text": "Through this project I had the opportunity to become more familiar with working with graphs when searching for specific information. It was very interesting for me to study the history of the use of various names, since it gives us an understanding of how many people with a specific name were born in certain years and how old they might be now. In the example with question 2 about the name Brittany, I was interested in how much our association with name and age coincides with reality.\n\n\nRead and format project data\n# Learn more about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\ndf_names = pd.read_csv(\"https://raw.githubusercontent.com/byuidatascience/data4names/master/data-raw/names_year/names_year.csv\")",
     "crumbs": [
@@ -62,7 +62,7 @@
   {
     "objectID": "250_Projects/project1.html#elevator-pitch",
     "href": "250_Projects/project1.html#elevator-pitch",
-    "title": "Client Report - [Insert Project Title]",
+    "title": "Client Report - What’s in a Name?",
     "section": "",
     "text": "Through this project I had the opportunity to become more familiar with working with graphs when searching for specific information. It was very interesting for me to study the history of the use of various names, since it gives us an understanding of how many people with a specific name were born in certain years and how old they might be now. In the example with question 2 about the name Brittany, I was interested in how much our association with name and age coincides with reality.\n\n\nRead and format project data\n# Learn more about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\ndf_names = pd.read_csv(\"https://raw.githubusercontent.com/byuidatascience/data4names/master/data-raw/names_year/names_year.csv\")",
     "crumbs": [
@@ -73,9 +73,9 @@
   {
     "objectID": "250_Projects/project1.html#cq1-comparing-name-anastasia-popularity-over-time",
     "href": "250_Projects/project1.html#cq1-comparing-name-anastasia-popularity-over-time",
-    "title": "Client Report - [Insert Project Title]",
-    "section": "CQ1: Comparing Name “Anastasia” Popularity Over Time",
-    "text": "CQ1: Comparing Name “Anastasia” Popularity Over Time\nHow does your name at your birth year compare to its use historically?\nUntil the 1980s, the popularity of this name was 0-200 children per year, which is quite small, considering that most of the time this figure was below 100. Since the 1980s, active use of this name began. In less than 10 years, its popularity has quadrupled. By the year of my birth (1998), almost 1.5 times. At the moment, this indicator continues to grow.\n\n\nCode - Filter data by name Anastasia and draw a graph with point birth year (1998)\n# Filter data by name\nd_name = df_names.query('name == \"Anastasia\"')\n# Draw a graph\nchart = ggplot(d_name, aes('year', 'Total')) + \\\n  geom_line(color='blue') + \\\n  geom_area(fill='lightblue', alpha=0.6) + \\\n  geom_vline(xintercept=1998, linetype='dashed', color='green', size=1) + \\\n  scale_x_continuous(format=\"d\") + \\\n  ggtitle(f'History of use of the name Anastasia') + \\\n  labs(x='Year', y='People born with the name Anastasia')\n\nchart\n\n\n\n   \n       \n       \n   \n   \n          \n   \n   \n\nA chart showing the history of the name Anastasia before, on and after 1998",
+    "title": "Client Report - What’s in a Name?",
+    "section": "CQ1: Comparing Name Anastasia Popularity Over Time",
+    "text": "CQ1: Comparing Name Anastasia Popularity Over Time\nHow does your name at your birth year compare to its use historically?\nUntil the 1980s, the popularity of this name was 0-200 children per year, which is quite small, considering that most of the time this figure was below 100. Since the 1980s, active use of this name began. In less than 10 years, its popularity has quadrupled. By the year of my birth (1998), almost 1.5 times. At the moment, this indicator continues to grow.\n\n\nCode - Filter data by name Anastasia and draw a graph with point birth year (1998)\n# Filter data by name\nd_name = df_names.query('name == \"Anastasia\"')\n# Draw a graph\nchart = ggplot(d_name, aes('year', 'Total')) + \\\n  geom_line(color='blue') + \\\n  geom_area(fill='lightblue', alpha=0.6) + \\\n  geom_vline(xintercept=1998, linetype='dashed', color='green', size=1) + \\\n  scale_x_continuous(format=\"d\") + \\\n  ggtitle(f'History of use of the name Anastasia') + \\\n  labs(x='Year', y='People born with the name Anastasia')\n\nchart\n\n\n\n   \n       \n       \n   \n   \n          \n   \n   \n\nA chart showing the history of the name Anastasia before, on and after 1998",
     "crumbs": [
       "DS250 Projects",
       "Project 1"
@@ -84,7 +84,7 @@
   {
     "objectID": "250_Projects/project1.html#cq2-age-estimation-based-on-name-britany",
     "href": "250_Projects/project1.html#cq2-age-estimation-based-on-name-britany",
-    "title": "Client Report - [Insert Project Title]",
+    "title": "Client Report - What’s in a Name?",
     "section": "CQ2: Age Estimation Based on Name Britany",
     "text": "CQ2: Age Estimation Based on Name Britany\nIf you talked to someone named Brittany on the phone, what is your guess of their age? What ages would you not guess?\nFor me, the name Brittany is associated with a young woman of about 20. I definitely would not have guessed that she could be 45 or older if the voice itself did not indicate otherwise. However, according to available data, most people with this name are 33-34 years old today.\n\n\nCode - Filter data by name Brittany and draw a graph\n# Filter data by name\nd_name = df_names.query('name == \"Brittany\"')\n# Draw a graph\nchart = ggplot(d_name, aes('year', 'Total')) + \\\n  geom_line(color='blue') + \\\n  geom_area(fill='lightblue', alpha=0.6) + \\\n  scale_x_continuous(format=\"d\") + \\\n  ggtitle(f'History of use of the name Brittany') + \\\n  labs(x='Year', y='People born with the name Brittany')\n\nchart\n\n\n\n   \n       \n       \n   \n   \n          \n   \n   \n\nA chart showing the history of the name Brittany",
     "crumbs": [
@@ -95,7 +95,7 @@
   {
     "objectID": "250_Projects/project1.html#cq3-comparative-analysis-of-christian-names-from-1920-to-2000",
     "href": "250_Projects/project1.html#cq3-comparative-analysis-of-christian-names-from-1920-to-2000",
-    "title": "Client Report - [Insert Project Title]",
+    "title": "Client Report - What’s in a Name?",
     "section": "CQ3: Comparative Analysis of Christian Names from 1920 to 2000",
     "text": "CQ3: Comparative Analysis of Christian Names from 1920 to 2000\nMary, Martha, Peter, and Paul are all Christian names. From 1920 - 2000, compare the name usage of each of the four names.\nPrior to 1970, the most popular name was Mary. It was given to their children 2-4 times more often than the name Paul, which is in second place. An interesting point is that from 1970 to 2000 the use of the names Mary and Paul is almost the same. Martha and Peter are quite rare names for those years from 19021 to 2000. However, it is interesting to note that initially the name Martha was preferable, but after 1950 the situation changed, so that the name Peter became more popular. By 2000, the general usage of all four names was nearly the same.\n\n\nCode - Filter data by Christian names and year (1920-2000) and draw a graph\n# Filter data by name and year\nd_name = df_names.query('name in [\"Mary\", \"Martha\", \"Peter\", \"Paul\"] & year &gt;=1920 & year &lt;=2000')\n# Draw a graph\nchart = ggplot(d_name, aes('year', 'Total')) + \\\n  geom_line(aes(color='name'), size=1) + \\\n  scale_x_continuous(format=\"d\") + \\\n  ggtitle(f'History of use of the Christian names') + \\\n  labs(\n    x='Year',\n    y='People born with the Christian names',\n    color='Christian names')\n\nchart\n\n\n\n   \n       \n       \n   \n   \n          \n   \n   \n\nA chart showing the history of the names between 1920 and 2000 years",
     "crumbs": [
@@ -106,7 +106,7 @@
   {
     "objectID": "250_Projects/project1.html#cq4-impact-of-a-famous-movie-on-name-usage",
     "href": "250_Projects/project1.html#cq4-impact-of-a-famous-movie-on-name-usage",
-    "title": "Client Report - [Insert Project Title]",
+    "title": "Client Report - What’s in a Name?",
     "section": "CQ4: Impact of a Famous Movie on Name Usage",
     "text": "CQ4: Impact of a Famous Movie on Name Usage\nThink of a unique name from a famous movie. Plot the usage of that name and see how changes line up with the movie release. Does it look like the movie had an effect on usage?\nI analyzed data on the name Dominic from the movie “Fast and the Furious”. According to the data, before the release of the first film in 2001 year, the name was already growing in popularity. After the first film, we see an increase in the use of this name. However, after each of the next three releases in 2003, 2006 and 2009 years there was a sharp decline in the use of this name. Although by the fifth film in 2011 year the total number exceeds the usage before the first. After the fifth film, there is again an increase in the use of the name Dominic and after the 6th in 2013 year it declines. Data after 2015 are not available.\n\n\nCode - Filter data by name Dominic and draw a graph\n# Filter data by name and year\nd_name = df_names.query('name == \"Dominic\"')\n# Draw a graph\nchart = ggplot(d_name, aes('year', 'Total')) + \\\n  geom_line(color='blue') + \\\n  geom_area(fill='lightblue', alpha=0.6) + \\\n  geom_vline(xintercept=2001, linetype='dashed', color='red') + \\\n  geom_vline(xintercept=2003, linetype='dashed', color='gray') + \\\n  geom_vline(xintercept=2006, linetype='dashed', color='green') + \\\n  geom_vline(xintercept=2009, linetype='dashed', color='black') + \\\n  geom_vline(xintercept=2011, linetype='dashed', color='orange') + \\\n  geom_vline(xintercept=2013, linetype='dashed', color='#800080') + \\\n  geom_vline(xintercept=2015, linetype='dashed', color='pink') + \\\n  scale_x_continuous(format=\"d\") + \\\n  ggtitle(f'History of use of the name Dominic') + \\\n  labs(x='Year', y='People born with the name Dominic')\n\nchart\n\n\n\n   \n       \n       \n   \n   \n          \n   \n   \n\nA chart showing the history of the name Dominic before the first ‘Fast and Furious’ release and throughout all releases",
     "crumbs": [
@@ -117,7 +117,7 @@
   {
     "objectID": "250_Projects/project1.html#st1-reproduction-of-elliot-name-chart",
     "href": "250_Projects/project1.html#st1-reproduction-of-elliot-name-chart",
-    "title": "Client Report - [Insert Project Title]",
+    "title": "Client Report - What’s in a Name?",
     "section": "ST1: Reproduction of “Elliot” Name Chart",
     "text": "ST1: Reproduction of “Elliot” Name Chart\nReproduce the chart Elliot using the data from the names_year.csv file.\nAccording to the data, we can see the history of the usage of Elliot name and E.T Releases: first in the middle of 1982 year, second in the 1985 year and third in 2002 year.\n\n\nCode - Filter data by name Elliot and year (&gt;=1950) and draw a graph\n# Filter data by name and year\nd_name = df_names.query('name == \"Elliot\" & year &gt;=1950')\n# List of years\nyears = [\n  {'year': 1982.5,\n    'title': 'E. T. Released',\n   'position': 1976},\n  {'year': 1985,\n    'title': 'Second Release',\n   'position': 1992},\n  {'year': 2002,\n    'title': 'Third Release',\n   'position': 2008}]\n# Draw a graph\nchart = ggplot(d_name, aes('year', 'Total')) + \\\n  geom_line(color='blue') + \\\n  geom_area(fill='lightblue', alpha=0.6) + \\\n  scale_x_continuous(format=\"d\") + \\\n  scale_y_continuous(format=\"d\") + \\\n  ggtitle(f'Elliot... What?') + \\\n  labs(x='Year', y='Total')\n\nfor year in years:\n  chart += geom_vline(xintercept=year['year'], linetype='dashed', color='red') + \\\n  geom_text(label=year['title'], x=year['position'], y=d_name['Total'].max(), color='black')\n\n\nchart\n\n\n\n   \n       \n       \n   \n   \n          \n   \n   \n\nFilter data by name Elliot from 1950 year and draw a graph with its three releases",
     "crumbs": [
