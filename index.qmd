@@ -1,11 +1,36 @@
 ---
-title: "about me"
+title: "Student of 250DS class Fall2024 semester"
 subtitle: "my data science portfolio"
 # use quarto markdown to 
 ---
 
-# Title 1 Header
-## Title 2 Header
+# Projects
+## Project0 - Introduction
+- [Final project](https://anastasiayazvinskaya.github.io/yazvinskaya_fa24/250_Projects/project0.html)
+
+## Project1 - What's in a Name?
+- [Mid-project video](https://cdnapisec.kaltura.com/index.php/extwidget/preview/partner_id/1157612/uiconf_id/42438192/entry_id/1_4iijf5it/embed/dynamic)
+- [Final project](https://anastasiayazvinskaya.github.io/yazvinskaya_fa24/250_Projects/project1.html)
+
+## Project2 - Late Flights and Missing Data (JSON)
+- [Mid-project video]()
+- [Final project](https://anastasiayazvinskaya.github.io/yazvinskaya_fa24/250_Projects/project2.html)
+
+## Project3 - Finding Relationships in Baseball
+- [Mid-project video]()
+- [Final project](https://anastasiayazvinskaya.github.io/yazvinskaya_fa24/250_Projects/project3.html)
+
+## Project4 - Can You Predict That?
+- [Mid-project video]()
+- [Final project](https://anastasiayazvinskaya.github.io/yazvinskaya_fa24/250_Projects/project4.html)
+
+## Project5 - The War with Star Wars
+- [Mid-project video]()
+- [Final project](https://anastasiayazvinskaya.github.io/yazvinskaya_fa24/250_Projects/project5.html)
+
+## Project6 - Git Your Portfolio Online
+- [Mid-project video]()
+- [Final project](https://anastasiayazvinskaya.github.io/yazvinskaya_fa24/250_Projects/project6.html)
 
 [MarkDown Basics](https://quarto.org/docs/authoring/markdown-basics.html#links-images)
 
