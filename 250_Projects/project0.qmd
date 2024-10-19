@@ -1,7 +1,7 @@
 ---
 title: "Client Report - Introduction"
 subtitle: "Course DS 250"
-author: "[STUDENT NAME]"
+author: "Yazvinskaya Anastasia"
 format:
   html:
     self-contained: true
@@ -57,9 +57,9 @@ df = pd.read_csv("https://raw.githubusercontent.com/byuidatascience/data4python4
 
 __Highlight the Questions and Tasks__
 
-## Question|Task 1
+## Task 1: Course Setup
 
-__COPY PASTE QUESTION|TASK 1 FROM THE PROJECT HERE__
+__Finish the Course Setup, and post any questions to getting your environment working smoothly in your course Slack channel__
 
 _Add details here to answer the question but `NOT` like an assignment Q&A. You need to `write your answers as a consulting solution report`. A Client needs to understand the answer, but also needs to understand the decisions that went into the answer (when applicable)._
 
@@ -79,9 +79,9 @@ _include figures in chunks and discuss your findings in the figure._
 
 ```
 
-## Question|Task 2
+## Task 2: Recreate the example chart
 
-__COPY PASTE QUESTION|TASK 2 FROM THE PROJECT HERE__
+__Recreate the example chart from PY4DS: CH2 Data Visualization of the textbook.__
 
 - _include figures in chunks and discuss your findings in the figure._
 
@@ -97,9 +97,9 @@ __COPY PASTE QUESTION|TASK 2 FROM THE PROJECT HERE__
 )
 ```
 
-## Question|Task 3
+## Task 3: Table used to create the above chart
 
-__COPY PASTE QUESTION|TASK 3 FROM THE PROJECT HERE__
+__Include the table created from PY4DS: CH2 Data Visualization used to create the above chart__
 
 - _PROVIDE TABLES THAT HELP ADDRESS THE QUESTIONS AND TASKS (IF APPLICABLE)._
 
@@ -121,7 +121,60 @@ display(mydat)
 
 ```
 
+## Task 4: Update the _quarto.yml
 
-Note: Non executing Python `Snippets` include (3) \`\`\` followed by (3) more \`\`\`, each on their own line. These are not single quotes, they are the key left of the number 1 key on the keyboard. The top row can include the language of code that is pasted inbetween the \`\`\`  marks. 
+__Update the _quarto.yml file in course work portfolio:__
+__a. update the title to includ your name__
+__b. update the site url to your published site url (this will be in the deployment section in GitHub)__
+__c. update the repo-url to your GitHub repository url__
+__d. update the issue-url to your GitHub issue url (its the same as the repo url but with /issues/new at the end)__
+__e. update the page-footer left to include your name__
+__f. update the page-footer right href to include your LinkedIn url (optional)__
 
-Note: These also work in `Slack` and it is expected they are used for any code shared in that app. No screen shots allowed.
+- _PROVIDE TABLES THAT HELP ADDRESS THE QUESTIONS AND TASKS (IF APPLICABLE)._
+
+```{python}
+#| label: Q1-table2
+#| code-summary: table example
+#| tbl-cap: "table example"
+#| tbl-cap-location: top
+# Include and execute your code here
+mydat = (df.head(1000)
+    .groupby('manufacturer')
+    .sum()
+    .reset_index()
+    .tail(10)
+    .filter(["manufacturer","displ","cty", "hwy"])
+)
+
+display(mydat)
+
+```
+
+## Task 5: Update the resume.qmd 
+
+__Update the resume.qmd file in course work portfolio to include your updated resume using markdown. See P4DS: CH30 Markdown__
+
+- _PROVIDE TABLES THAT HELP ADDRESS THE QUESTIONS AND TASKS (IF APPLICABLE)._
+
+```{python}
+#| label: Q1-table3
+#| code-summary: table example
+#| tbl-cap: "table example"
+#| tbl-cap-location: top
+# Include and execute your code here
+mydat = (df.head(1000)
+    .groupby('manufacturer')
+    .sum()
+    .reset_index()
+    .tail(10)
+    .filter(["manufacturer","displ","cty", "hwy"])
+)
+
+display(mydat)
+
+```
+
+
+
+
