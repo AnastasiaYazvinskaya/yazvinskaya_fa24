@@ -1,7 +1,7 @@
 ---
-title: "Client Report - [Insert Project Title]"
+title: "Client Report - Late Flights & Missing Data (JSON)"
 subtitle: "Course DS 250"
-author: "[STUDENT NAME]"
+author: "Anastasia Yazvinskaya"
 format:
   html:
     self-contained: true
@@ -25,4 +25,249 @@ execute:
     
 ---
 
-### Paste in a template
+```{python}
+#| label: libraries
+#| include: false
+import pandas as pd
+import numpy as np
+from lets_plot import *
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+
+## Elevator pitch
+
+_This project helped me understand that it is always worth checking data for correctness. Despite the fact that we cannot always check how correct the data is, nevertheless, it must correspond to the type determined by the meaning of the column. Thus, if a column contains the value of the number of canceled flights, then it cannot be less than 0, and must also be a numeric value. It is important to consider all these nuances before starting to work with data. We can also take into account if the data is lost and has an empty value. Depending on the task, rows with these values may or may not be taken into account._
+
+```{python}
+#| label: project-data
+#| code-summary: Read and format project data
+
+# Learn more about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html
+
+# Include and execute your code here
+df_flights = pd.read_json("https://github.com/byuidatascience/data4missing/raw/master/data-raw/flights_missing/flights_missing.json")
+```
+
+## CQ1: Standardization of Missing Data Types
+
+__*Fix all of the varied missing data types in the data to be consistent (all missing values should be displayed as “NaN”).* In your report include one record example (one row) from your new data, in the raw JSON format. Your example should display the “NaN” for at least one missing value.__
+
+_After analyzing all the columns of the table, it was discovered that:_
+- _Airport Name had empty string ('') as value_ 
+- _Month had missing data ('n/a')_
+- _Number of Delays Carrier had missing data ('1500+')_
+- _Year, Minutes Delayed Carrier, Minutes Delayd Nas had missing data ('nan')_
+_All these values on each columns have been replaced with the value NaN. The output shows an example of the final data in json format. Here we can see that num_of_delays_carrier has a null value._
+
+_Also in this example we can see that value for num_of_delays_late_aircraft is -999. This seams as incorrect for a purpose of the column but in its data type it is correct._
+
+```{python}
+#| label: CQ1-json
+#| code-summary: Code - Finding missing data ('n/a', '', 'nan', '1500+'') and fix it with NaN value
+# Find unique data for analizing data for missing values
+# unique_values_dict = {col: df_flights[col].unique() for col in df_flights.columns}
+# Replace missing data ('n/a', '', 'nan', '1500+') with NaN
+df_flights = df_flights.replace({'': np.nan, 'n/a': np.nan, 'nan': np.nan, '1500+': np.nan})
+# Output example JSON row
+ex = df_flights[df_flights.isna().any(axis=1)].iloc[0].to_json()
+ex
+```
+
+## CQ2: Analysis of Airport Delays
+
+__*Which airport has the worst delays?* Describe the metric you chose, and why you chose it to determine the “worst” airport. Your answer should include a summary table that lists (for each airport) the total number of flights, total number of delayed flights, proportion of delayed flights, and average delay time in hours.__
+
+_In my understanding, the worst airport is the one that has the most delayed flights, since this does not give confidence whether my flight will be canceled or not, as well as the longest delay time, because this means that I have to plan too much time, taking into account possible postponement of the flight for subsequent business. According to this definition, a table was compiled in which we can see that the SFO airport is the worst in relation to it, since it most often has delays and in fact has the longest average delay time._
+
+```{python}
+#| label: CQ2-table
+#| code-summary: Code - 
+#| tbl-cap: "Rating of airports"
+#| tbl-cap-location: top
+# Add the average delay time in hours column
+worst_delays = df_flights.assign(hours_delayed_total = df_flights.minutes_delayed_total/df_flights.num_of_delays_total/60)
+# Group rows by the 'airport code'
+worst_delays = worst_delays.groupby("airport_code").agg(
+    total_flights = ('num_of_flights_total', 'sum'),
+    total_delays = ('num_of_delays_total', 'sum'),
+    avg_delay_hours = ('hours_delayed_total', 'mean')
+)
+# Add the proportion of delayed flights column
+worst_delays['proportion_of_delayed'] = worst_delays['total_delays'] / worst_delays['total_flights']
+# Sort table by the average delay time in hours and proportion of delayed flights
+worst_delays = worst_delays.sort_values(['proportion_of_delayed', 'avg_delay_hours'], ascending=False)
+# Print out table
+display(worst_delays)
+```
+
+## CQ3: Optimal Month for Minimizing Flight Delays
+
+__*What is the best month to fly if you want to avoid delays of any length?* Describe the metric you chose and why you chose it to calculate your answer. Include one chart to help support your answer, with the x-axis ordered by month. (To answer this question, you will need to remove any rows that are missing the Month variable.)__
+
+_In this graph we can see the percentage of delayed flights for each month. So we see that December has the most flight delays, so there’s a good chance our flight will be delayed this month too. While in September, according to statistics, the least flight delays occur. Therefore, if you are planning a trip by plane, then the best month for your plans to best match your expectations is September._
+
+```{python}
+#| label: CQ3-chart
+#| code-summary: Code - and draw a graph
+#| fig-cap: ""
+#| fig-align: center
+# clear wrong data (February)
+df_flights.replace('Febuary', 'February', inplace=True)
+# Delete all rows with no named month
+d_months = df_flights.query("@pd.notnull(month)")
+# Group rows by month
+d_months = d_months.groupby('month').agg(
+    total_flights = ('num_of_flights_total', 'sum'),
+    total_delays = ('num_of_delays_total', 'sum')
+).reset_index()
+# Add the proportion of delayed flights in % column
+d_months['proportion_of_delayed'] = round(d_months['total_delays'] / d_months['total_flights'], 2)*100
+# Sort table by the 'months'
+month_dict = {'January':1,'February':2,'March':3, 'April':4, 'May':5, 'June':6, 'July':7, 'August':8, 'September':9, 'October':10, 'November':11, 'December':12}
+d_months = d_months.sort_values(['month'], key = lambda x : x.apply (lambda x : month_dict[x]), ascending=True).reset_index(drop=True)
+
+# Identify best and worst months
+best_month = d_months.loc[d_months['proportion_of_delayed'].idxmin(), 'month']
+worst_month = d_months.loc[d_months['proportion_of_delayed'].idxmax(), 'month']
+
+d_months['color'] = np.where(d_months['month'] == best_month, 'blue', 
+                             np.where(d_months['month'] == worst_month, 'red', 'gray'))
+
+# Draw chart
+chart = ggplot(d_months, aes(x='month', y='proportion_of_delayed', fill='color')) + \
+    geom_bar(stat='identity') + \
+      scale_fill_identity() + \
+    ggtitle('Proportion of Delayed Flights by Month') + \
+    xlab('Month') + \
+    ylab('Proportion of Delayed Flights')
+
+chart
+```
+
+## CQ4: Calculation of Total Weather-Related Flight Delays
+
+__According to the BTS website, the “Weather” category only accounts for severe weather delays. Mild weather delays are not counted in the “Weather” category, but are actually included in both the “NAS” and “Late-Arriving Aircraft” categories. *Your job is to create a new column that calculates the total number of flights delayed by weather (both severe and mild).* You will need to replace all the missing values in the Late Aircraft variable with the mean. Show your work by printing the first 5 rows of data in a table. Use these three rules for your calculations:__
+
+__a. 100% of delayed flights in the Weather category are due to weather__
+__b. 30% of all delayed flights in the Late-Arriving category are due to weather__
+__c. From April to August, 40% of delayed flights in the NAS category are due to weather. The rest of the months, the proportion rises to 65%__
+
+_While studying the data necessary for the calculations, it was discovered that flights delayed due to a late plane had incorrect data in the form of -999, which I corrected to the average value for this column. The remaining columns required for calculations had data correct for calculations._
+
+```{python}
+#| label: CQ4-chart
+#| code-summary: Code - Filter data by name Dominic and draw a graph
+#| fig-cap: "A chart showing the history of the name Dominic before the first 'Fast and Furious' release and throughout all releases"
+#| fig-align: center
+# Fill missing data
+# Use mean value for missing data
+mean_late_aircraft = df_flights.num_of_delays_late_aircraft.mean()
+df_flights.replace(-999, mean_late_aircraft, inplace=True)
+df_flights.fillna(mean_late_aircraft, inplace=True)
+# calculate delays by weather
+predata = df_flights.assign(delays_by_weather_months = lambda x: 0.4*x.num_of_delays_nas if str(x.month) in ['April', 'May', 'June', 'July', 'August'] else 0.65*x.num_of_delays_nas)
+predata = predata.assign(delays_by_weather = lambda x: x.num_of_delays_weather + 0.3*x.num_of_delays_late_aircraft + x.delays_by_weather_months)
+
+# Columns to include in the resut table
+columns_to_include = ['airport_code', 'airport_name', 'month', 'num_of_flights_total', 'num_of_delays_total', 'num_of_delays_weather', 'num_of_delays_late_aircraft', 'num_of_delays_nas', 'delays_by_weather']
+# Filter DataFrame to include only desired columns
+data4 = predata[columns_to_include]
+table4 = data4.head(5)
+
+table4
+```
+
+## CQ5: Analysis of Weather-Related Flight Delays by Airport
+
+__*Using the new weather variable calculated above, create a barplot showing the proportion of all flights that are delayed by weather at each airport. Describe what you learn from this graph.*__
+
+_According to statistics and taking into account all data errors on the histogram, we can see the following: Siberian Federal District, ORD, ATL have approximately the same high percentage of flights delayed due to weather - 40+%. This means that when choosing these airports, you should pay attention to the expected weather when flying in that region. SAN Airport has the lowest percentage of flights delayed due to weather - 30%._
+
+```{python}
+#| label: CQ5-chart
+#| code-summary: Code - Filter data by name Dominic and draw a graph
+#| fig-cap: "A chart showing the history of the name Dominic before the first 'Fast and Furious' release and throughout all releases"
+#| fig-align: center
+data5 = predata.groupby("airport_code").agg(
+    total_num_of_delays = ('num_of_delays_total', 'sum'),
+    num_of_delays_weather = ('num_of_delays_weather', 'sum'),
+    numu_of_delays_late_aircraft = ('num_of_delays_late_aircraft', 'sum'),
+    num_of_delays_nas = ('num_of_delays_nas', 'sum'),
+    total_num_of_delays_by_weather = ('delays_by_weather', 'sum')
+).reset_index()
+# Add the 'proportion of delayed flights by weather' column
+data5 = data5.assign(proportion_of_delayed_flights_by_weather = lambda x: round(x.total_num_of_delays_by_weather/x.total_num_of_delays, 2)*100)
+
+chart = ggplot(data5, aes(x='airport_code', y='proportion_of_delayed_flights_by_weather')) + \
+    geom_bar(stat='identity') + \
+    ggtitle('Proportion of Delayed Flights by Month') + \
+    xlab('Airport code') + \
+    ylab('Rate of delayed flights by weather in %')
+
+chart
+```
+
+## SQ1: Comparative Analysis of Flight Delay Types
+
+__*Which delay is the worst delay?* Create a similar analysis as above for Weahter Delay with: Carrier Delay and Security Delay. Compare the proportion of delay for each of the three categories in a Chart and a Table. Describe your results.__
+
+_When examining the data needed for the calculations, it was discovered that the required columns had incorrect data, which I corrected to the average of that column. According to statistics and taking into account all the data errors on the histogram, we see the following: the largest number of delays is associated with weather - 39%, the smallest number of delays is associated with security - almost 0%._
+
+```{python}
+#| label: ST1-table
+#| code-summary: Code - Filter data by name Elliot and year (>=1950) and draw a graph
+#| fig-align: center
+# Clear num_of_delays_carrier
+predata['Numeric_Column'] = pd.to_numeric(predata['num_of_delays_carrier'], errors='coerce')
+mean_value = predata['Numeric_Column'].mean()
+predata['num_of_delays_carrier'] = predata['Numeric_Column'].fillna(mean_value)
+# Clear num_of_delays_security
+predata['Numeric_Column'] = pd.to_numeric(predata['num_of_delays_security'], errors='coerce')
+mean_value = predata['Numeric_Column'].mean()
+predata['num_of_delays_security'] = predata['Numeric_Column'].fillna(mean_value)
+
+predata['Numeric_Column'] = 1
+data6 = predata.groupby("Numeric_Column").agg(
+    total_num_of_delays = ('num_of_delays_total', 'sum'),
+    num_of_delays_weather = ('num_of_delays_weather', 'sum'),
+    numu_of_delays_late_aircraft = ('num_of_delays_late_aircraft', 'sum'),
+    num_of_delays_nas = ('num_of_delays_nas', 'sum'),
+    total_num_of_delays_by_weather = ('delays_by_weather', 'sum'),
+    num_of_delays_carrier = ('num_of_delays_carrier', 'sum'),
+    num_of_delays_security = ('num_of_delays_security', 'sum')
+).reset_index()
+# Add the 'proportion of delayed flights by weather' column
+data6 = data6.assign(rate_of_delayed_flights_by_weather = lambda x: round(x.total_num_of_delays_by_weather/x.total_num_of_delays, 2)*100)
+data6 = data6.assign(rate_of_delayed_flights_by_carrier = lambda x: round(x.num_of_delays_carrier/x.total_num_of_delays, 2)*100)
+data6 = data6.assign(rate_of_delayed_flights_by_security = lambda x: round(x.num_of_delays_security/x.total_num_of_delays, 2)*100)
+# Columns to include in the resut table
+columns_to_include = ['rate_of_delayed_flights_by_weather', 'rate_of_delayed_flights_by_carrier', 'rate_of_delayed_flights_by_security']
+# Filter DataFrame to include only desired columns
+data = data6[columns_to_include]
+data6
+```
+
+```{python}
+#| label: SQ1-chart
+#| code-summary: Code - Filter data by name Dominic and draw a graph
+#| fig-cap: "A chart showing the history of the name Dominic before the first 'Fast and Furious' release and throughout all releases"
+#| fig-align: center
+delay_comparison = data6[['Numeric_Column', 'rate_of_delayed_flights_by_carrier', 'rate_of_delayed_flights_by_security', 'rate_of_delayed_flights_by_weather']]
+
+delay_comparison_melted = delay_comparison.melt(id_vars='Numeric_Column', 
+                                                var_name='Delay_Type', 
+                                                value_name='Delay_Percentage')
+
+# График с пропорциями задержек по типам
+chart = ggplot(delay_comparison_melted, aes(x='Delay_Type', y='Delay_Percentage', fill='Delay_Type')) + \
+    geom_bar(stat='identity', position='dodge') + \
+    ggtitle('Comparison of Delay Types by Delay Type') + \
+    xlab('Delay_Type') + \
+    ylab('Percentage of Delays') + \
+    scale_fill_brewer(type='qual', palette='Set1')
+
+chart
+```
+
