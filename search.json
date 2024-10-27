@@ -190,44 +190,22 @@
     ]
   },
   {
-    "objectID": "250_Projects/project0.html",
-    "href": "250_Projects/project0.html",
-    "title": "Client Report - Introduction",
-    "section": "",
-    "text": "THIS .qmd IS INSTRUCTIONAL AND SHOULD NOT BE USED TO WRITE YOUR REPORTS (EXCEPTION - PROJECT 0). THERE IS ANOTHER TEMPLATE FILE FOR THAT. YOU WILL NEED TO PREVIEW THE REPORT TO PRODUCE A .html FILE. YOU WILL SUBMIT THE .html FILE ON CANVAS.",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 0"
-    ]
-  },
-  {
     "objectID": "250_Projects/project0.html#elevator-pitch",
     "href": "250_Projects/project0.html#elevator-pitch",
     "title": "Client Report - Introduction",
     "section": "Elevator pitch",
-    "text": "Elevator pitch\nA SHORT (2-3 SENTENCES) PARAGRAPH THAT DESCRIBES KEY INSIGHTS TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS. (Note: this is not a summary of the project, but a summary of the results.)\nA Client has requested this analysis and this is your one shot of what you would say to your boss in a 2 min elevator ride before he takes your report and hands it to the client.\n\n\nRead and format project data\n# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\ndf = pd.read_csv(\"https://raw.githubusercontent.com/byuidatascience/data4python4ds/master/data-raw/mpg/mpg.csv\")\n\n\nHighlight the Questions and Tasks",
+    "text": "Elevator pitch\nIn this project, I analyze the Palmer Penguins dataset to explore relationships between penguin species and their physical characteristics. By visualizing and summarizing key features such as flipper length, body mass, and bill dimensions, we aim to uncover trends and patterns that differentiate the species. Through the use of data visualization techniques, this report will provide insights into the characteristics of penguin populations.\n\n\nRead and format project data\n# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\npenguins = load_penguins()\npenguins\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nmale\n2007\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nfemale\n2007\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nfemale\n2007\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n2007\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nfemale\n2007\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n339\nChinstrap\nDream\n55.8\n19.8\n207.0\n4000.0\nmale\n2009\n\n\n340\nChinstrap\nDream\n43.5\n18.1\n202.0\n3400.0\nfemale\n2009\n\n\n341\nChinstrap\nDream\n49.6\n18.2\n193.0\n3775.0\nmale\n2009\n\n\n342\nChinstrap\nDream\n50.8\n19.0\n210.0\n4100.0\nmale\n2009\n\n\n343\nChinstrap\nDream\n50.2\n18.7\n198.0\n3775.0\nfemale\n2009\n\n\n\n\n344 rows × 8 columns",
     "crumbs": [
       "DS250 Projects",
       "Project 0"
     ]
   },
   {
-    "objectID": "250_Projects/project0.html#task-1-course-setup",
-    "href": "250_Projects/project0.html#task-1-course-setup",
+    "objectID": "250_Projects/project0.html#t1-recreate-charts",
+    "href": "250_Projects/project0.html#t1-recreate-charts",
     "title": "Client Report - Introduction",
-    "section": "Task 1: Course Setup",
-    "text": "Task 1: Course Setup\nFinish the Course Setup, and post any questions to getting your environment working smoothly in your course Slack channel\nAdd details here to answer the question but NOT like an assignment Q&A. You need to write your answers as a consulting solution report. A Client needs to understand the answer, but also needs to understand the decisions that went into the answer (when applicable).\ninclude figures in chunks and discuss your findings in the figure.\n\nYOU SHOULD HAVE QUALITY WRITING THAT DESCRIBES YOUR CHARTS AND TABLES.\nWE HIGHLY RECOMMEND GRAMMARLY TO FIX YOUR SPELLING AND GRAMMAR. WRITING TAKES TIME TO BE CLEAR. SPEND THE TIME TO PRACITCE.\nYOU SHOULD HAVE QUALITY COMMENTS THAT DESCRIBES YOUR CODES. OFTEN CODEERS WORK IN TEAMS AND YOU NEED TO HAVE QUALTIY COMMENTS FOR YOUR TEAM AND YOURSELF. YOU MAY NEED TO REVISIT CODE YOU WROTE OVER A YEAR AGO, AND IF YOU DONT COMMENT IT NOW YOU WONT REMEMBER WHY YOU DID WHAT YOU DID.\n\n\n\nRead and format data\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 0"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project0.html#task-2-recreate-the-example-chart",
-    "href": "250_Projects/project0.html#task-2-recreate-the-example-chart",
-    "title": "Client Report - Introduction",
-    "section": "Task 2: Recreate the example chart",
-    "text": "Task 2: Recreate the example chart\nRecreate the example chart from PY4DS: CH2 Data Visualization of the textbook.\n\ninclude figures in chunks and discuss your findings in the figure.\n\n\n\nplot example\n# Include and execute your code here\n\n(\n  ggplot(df.head(500), aes(x='displ', y='hwy')) + geom_point()\n)\n\n\n\n   \n       \n       \n   \n   \n          \n   \n   \n\nMy useless chart",
+    "section": "T1: Recreate Charts",
+    "text": "T1: Recreate Charts\nRecreate the example charts from PY4DS: CH2 Data Visualization of the textbook.\nAdd details here to answer the question but NOT like an assignment Q&A. You need to write your answers as a consulting solution report. A Client needs to understand the answer, but also needs to understand the decisions that went into the answer (when applicable).\ninclude figures in chunks and discuss your findings in the figure.\n\nYOU SHOULD HAVE QUALITY WRITING THAT DESCRIBES YOUR CHARTS AND TABLES.\nWE HIGHLY RECOMMEND GRAMMARLY TO FIX YOUR SPELLING AND GRAMMAR. WRITING TAKES TIME TO BE CLEAR. SPEND THE TIME TO PRACITCE.\nYOU SHOULD HAVE QUALITY COMMENTS THAT DESCRIBES YOUR CODES. OFTEN CODEERS WORK IN TEAMS AND YOU NEED TO HAVE QUALTIY COMMENTS FOR YOUR TEAM AND YOURSELF. YOU MAY NEED TO REVISIT CODE YOU WROTE OVER A YEAR AGO, AND IF YOU DONT COMMENT IT NOW YOU WONT REMEMBER WHY YOU DID WHAT YOU DID.\n\n\n\nRead and format data\n# Include and execute your (\nchart =   ggplot(data=penguins, mapping=aes(x=\"flipper_length_mm\", y=\"body_mass_g\")) + \\\n  geom_point(aes(color=\"species\", shape=\"species\")) + \\\n  geom_smooth(method=\"lm\") + \\\n  labs(\n        title=\"Body mass and flipper length\",\n        subtitle=\"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n        x=\"Flipper length (mm)\",\n        y=\"Body mass (g)\",\n        color=\"Species\",\n        shape=\"Species\",\n    )\n\nchart",
     "crumbs": [
       "DS250 Projects",
       "Project 0"
@@ -238,29 +216,7 @@
     "href": "250_Projects/project0.html#task-3-table-used-to-create-the-above-chart",
     "title": "Client Report - Introduction",
     "section": "Task 3: Table used to create the above chart",
-    "text": "Task 3: Table used to create the above chart\nInclude the table created from PY4DS: CH2 Data Visualization used to create the above chart\n\nPROVIDE TABLES THAT HELP ADDRESS THE QUESTIONS AND TASKS (IF APPLICABLE).\n\n\n\ntable example\n# Include and execute your code here\nmydat = (df.head(1000)\n    .groupby('manufacturer')\n    .sum()\n    .reset_index()\n    .tail(10)\n    .filter([\"manufacturer\",\"displ\",\"cty\", \"hwy\"])\n)\n\ndisplay(mydat)\n\n\n\n\n\n\ntable example {#cell-Q1-table}\n\n\n\nmanufacturer\ndispl\ncty\nhwy\n\n\n\n\n5\nhyundai\n34.0\n261\n376\n\n\n6\njeep\n36.6\n108\n141\n\n\n7\nland rover\n17.2\n46\n66\n\n\n8\nlincoln\n16.2\n34\n51\n\n\n9\nmercury\n17.6\n53\n72\n\n\n10\nnissan\n42.5\n235\n320\n\n\n11\npontiac\n19.8\n85\n132\n\n\n12\nsubaru\n34.4\n270\n358\n\n\n13\ntoyota\n100.4\n630\n847\n\n\n14\nvolkswagen\n60.9\n565\n789",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 0"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project0.html#task-4-update-the-_quarto.yml",
-    "href": "250_Projects/project0.html#task-4-update-the-_quarto.yml",
-    "title": "Client Report - Introduction",
-    "section": "Task 4: Update the _quarto.yml",
-    "text": "Task 4: Update the _quarto.yml\n__Update the _quarto.yml file in course work portfolio:__ a. update the title to includ your name b. update the site url to your published site url (this will be in the deployment section in GitHub) c. update the repo-url to your GitHub repository url d. update the issue-url to your GitHub issue url (its the same as the repo url but with /issues/new at the end) e. update the page-footer left to include your name f. update the page-footer right href to include your LinkedIn url (optional)\n\nPROVIDE TABLES THAT HELP ADDRESS THE QUESTIONS AND TASKS (IF APPLICABLE).\n\n\n\ntable example\n# Include and execute your code here\nmydat = (df.head(1000)\n    .groupby('manufacturer')\n    .sum()\n    .reset_index()\n    .tail(10)\n    .filter([\"manufacturer\",\"displ\",\"cty\", \"hwy\"])\n)\n\ndisplay(mydat)\n\n\n\n\n\n\ntable example {#cell-Q1-table2}\n\n\n\nmanufacturer\ndispl\ncty\nhwy\n\n\n\n\n5\nhyundai\n34.0\n261\n376\n\n\n6\njeep\n36.6\n108\n141\n\n\n7\nland rover\n17.2\n46\n66\n\n\n8\nlincoln\n16.2\n34\n51\n\n\n9\nmercury\n17.6\n53\n72\n\n\n10\nnissan\n42.5\n235\n320\n\n\n11\npontiac\n19.8\n85\n132\n\n\n12\nsubaru\n34.4\n270\n358\n\n\n13\ntoyota\n100.4\n630\n847\n\n\n14\nvolkswagen\n60.9\n565\n789",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 0"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project0.html#task-5-update-the-resume.qmd",
-    "href": "250_Projects/project0.html#task-5-update-the-resume.qmd",
-    "title": "Client Report - Introduction",
-    "section": "Task 5: Update the resume.qmd",
-    "text": "Task 5: Update the resume.qmd\nUpdate the resume.qmd file in course work portfolio to include your updated resume using markdown. See P4DS: CH30 Markdown\n\nPROVIDE TABLES THAT HELP ADDRESS THE QUESTIONS AND TASKS (IF APPLICABLE).\n\n\n\ntable example\n# Include and execute your code here\nmydat = (df.head(1000)\n    .groupby('manufacturer')\n    .sum()\n    .reset_index()\n    .tail(10)\n    .filter([\"manufacturer\",\"displ\",\"cty\", \"hwy\"])\n)\n\ndisplay(mydat)\n\n\n\n\n\n\ntable example {#cell-Q1-table3}\n\n\n\nmanufacturer\ndispl\ncty\nhwy\n\n\n\n\n5\nhyundai\n34.0\n261\n376\n\n\n6\njeep\n36.6\n108\n141\n\n\n7\nland rover\n17.2\n46\n66\n\n\n8\nlincoln\n16.2\n34\n51\n\n\n9\nmercury\n17.6\n53\n72\n\n\n10\nnissan\n42.5\n235\n320\n\n\n11\npontiac\n19.8\n85\n132\n\n\n12\nsubaru\n34.4\n270\n358\n\n\n13\ntoyota\n100.4\n630\n847\n\n\n14\nvolkswagen\n60.9\n565\n789",
+    "text": "Task 3: Table used to create the above chart\nInclude the table created from PY4DS: CH2 Data Visualization used to create the above chart\n\nPROVIDE TABLES THAT HELP ADDRESS THE QUESTIONS AND TASKS (IF APPLICABLE).\n\n\n\ntable example\n# Include and execute your code here",
     "crumbs": [
       "DS250 Projects",
       "Project 0"
@@ -291,9 +247,86 @@
   {
     "objectID": "250_Projects/project2.html",
     "href": "250_Projects/project2.html",
-    "title": "Client Report - [Insert Project Title]",
+    "title": "Client Report - Late Flights & Missing Data (JSON)",
     "section": "",
-    "text": "Paste in a template\n\n\n\n\n Back to top",
+    "text": "This project helped me understand that it is always worth checking data for correctness. Despite the fact that we cannot always check how correct the data is, nevertheless, it must correspond to the type determined by the meaning of the column. Thus, if a column contains the value of the number of canceled flights, then it cannot be less than 0, and must also be a numeric value. It is important to consider all these nuances before starting to work with data. We can also take into account if the data is lost and has an empty value. Depending on the task, rows with these values may or may not be taken into account.\n\n\nRead and format project data\n# Learn more about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\ndf_flights = pd.read_json(\"https://github.com/byuidatascience/data4missing/raw/master/data-raw/flights_missing/flights_missing.json\")",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 2"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project2.html#elevator-pitch",
+    "href": "250_Projects/project2.html#elevator-pitch",
+    "title": "Client Report - Late Flights & Missing Data (JSON)",
+    "section": "",
+    "text": "This project helped me understand that it is always worth checking data for correctness. Despite the fact that we cannot always check how correct the data is, nevertheless, it must correspond to the type determined by the meaning of the column. Thus, if a column contains the value of the number of canceled flights, then it cannot be less than 0, and must also be a numeric value. It is important to consider all these nuances before starting to work with data. We can also take into account if the data is lost and has an empty value. Depending on the task, rows with these values may or may not be taken into account.\n\n\nRead and format project data\n# Learn more about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\ndf_flights = pd.read_json(\"https://github.com/byuidatascience/data4missing/raw/master/data-raw/flights_missing/flights_missing.json\")",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 2"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project2.html#cq1-standardization-of-missing-data-types",
+    "href": "250_Projects/project2.html#cq1-standardization-of-missing-data-types",
+    "title": "Client Report - Late Flights & Missing Data (JSON)",
+    "section": "CQ1: Standardization of Missing Data Types",
+    "text": "CQ1: Standardization of Missing Data Types\nFix all of the varied missing data types in the data to be consistent (all missing values should be displayed as “NaN”). In your report include one record example (one row) from your new data, in the raw JSON format. Your example should display the “NaN” for at least one missing value.\nAfter analyzing all the columns of the table, it was discovered that: - Airport Name had empty string (’’) as value - Month had missing data (‘n/a’) - Number of Delays Carrier had missing data (‘1500+’) - Year, Minutes Delayed Carrier, Minutes Delayd Nas had missing data (‘nan’) All these values on each columns have been replaced with the value NaN. The output shows an example of the final data in json format. Here we can see that num_of_delays_carrier has a null value.\nAlso in this example we can see that value for num_of_delays_late_aircraft is -999. This seams as incorrect for a purpose of the column but in its data type it is correct.\n\n\nCode - Finding missing data (‘n/a’, ’‘, ’nan’, ‘1500+’’) and fix it with NaN value\n# Find unique data for analizing data for missing values\n# unique_values_dict = {col: df_flights[col].unique() for col in df_flights.columns}\n# Replace missing data ('n/a', '', 'nan', '1500+') with NaN\ndf_flights = df_flights.replace({'': np.nan, 'n/a': np.nan, 'nan': np.nan, '1500+': np.nan})\n# Output example JSON row\nex = df_flights[df_flights.isna().any(axis=1)].iloc[0].to_json()\nex\n\n\n'{\"airport_code\":\"ATL\",\"airport_name\":\"Atlanta, GA: Hartsfield-Jackson Atlanta International\",\"month\":\"January\",\"year\":2005.0,\"num_of_flights_total\":35048,\"num_of_delays_carrier\":null,\"num_of_delays_late_aircraft\":-999,\"num_of_delays_nas\":4598,\"num_of_delays_security\":10,\"num_of_delays_weather\":448,\"num_of_delays_total\":8355,\"minutes_delayed_carrier\":116423.0,\"minutes_delayed_late_aircraft\":104415,\"minutes_delayed_nas\":207467.0,\"minutes_delayed_security\":297,\"minutes_delayed_weather\":36931,\"minutes_delayed_total\":465533}'",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 2"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project2.html#cq2-analysis-of-airport-delays",
+    "href": "250_Projects/project2.html#cq2-analysis-of-airport-delays",
+    "title": "Client Report - Late Flights & Missing Data (JSON)",
+    "section": "CQ2: Analysis of Airport Delays",
+    "text": "CQ2: Analysis of Airport Delays\nWhich airport has the worst delays? Describe the metric you chose, and why you chose it to determine the “worst” airport. Your answer should include a summary table that lists (for each airport) the total number of flights, total number of delayed flights, proportion of delayed flights, and average delay time in hours.\nIn my understanding, the worst airport is the one that has the most delayed flights, since this does not give confidence whether my flight will be canceled or not, as well as the longest delay time, because this means that I have to plan too much time, taking into account possible postponement of the flight for subsequent business. According to this definition, a table was compiled in which we can see that the SFO airport is the worst in relation to it, since it most often has delays and in fact has the longest average delay time.\n\n\nCode - Analysis of Airport Delays\n# Add the average delay time in hours column\nworst_delays = df_flights.assign(hours_delayed_total = df_flights.minutes_delayed_total/df_flights.num_of_delays_total/60)\n# Group rows by the 'airport code'\nworst_delays = worst_delays.groupby(\"airport_code\").agg(\n    total_flights = ('num_of_flights_total', 'sum'),\n    total_delays = ('num_of_delays_total', 'sum'),\n    avg_delay_hours = ('hours_delayed_total', 'mean')\n)\n# Add the proportion of delayed flights column\nworst_delays['proportion_of_delayed'] = worst_delays['total_delays'] / worst_delays['total_flights']\n# Sort table by the average delay time in hours and proportion of delayed flights\nworst_delays = worst_delays.sort_values(['proportion_of_delayed', 'avg_delay_hours'], ascending=False)\n# Print out table\ndisplay(worst_delays)\n\n\n\n\n\n\nRating of airports {#cell-CQ2-table}\n\n\n\ntotal_flights\ntotal_delays\navg_delay_hours\nproportion_of_delayed\n\n\nairport_code\n\n\n\n\n\n\n\n\nSFO\n1630945\n425604\n1.017653\n0.260955\n\n\nORD\n3597588\n830825\n1.105717\n0.230939\n\n\nATL\n4430047\n902443\n0.989502\n0.203710\n\n\nIAD\n851571\n168467\n1.003245\n0.197831\n\n\nSAN\n917862\n175132\n0.784028\n0.190804\n\n\nDEN\n2513974\n468519\n0.882581\n0.186366\n\n\nSLC\n1403384\n205160\n0.823587\n0.146189",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 2"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project2.html#cq3-optimal-month-for-minimizing-flight-delays",
+    "href": "250_Projects/project2.html#cq3-optimal-month-for-minimizing-flight-delays",
+    "title": "Client Report - Late Flights & Missing Data (JSON)",
+    "section": "CQ3: Optimal Month for Minimizing Flight Delays",
+    "text": "CQ3: Optimal Month for Minimizing Flight Delays\nWhat is the best month to fly if you want to avoid delays of any length? Describe the metric you chose and why you chose it to calculate your answer. Include one chart to help support your answer, with the x-axis ordered by month. (To answer this question, you will need to remove any rows that are missing the Month variable.)\nIn this graph we can see the percentage of delayed flights for each month. So we see that December has the most flight delays, so there’s a good chance our flight will be delayed this month too. While in September, according to statistics, the least flight delays occur. Therefore, if you are planning a trip by plane, then the best month for your plans to best match your expectations is September.\n\n\nCode - Analyse data for each month for minimizing flight delays\n# clear wrong data (February)\ndf_flights.replace('Febuary', 'February', inplace=True)\n# Delete all rows with no named month\nd_months = df_flights.query(\"@pd.notnull(month)\")\n# Group rows by month\nd_months = d_months.groupby('month').agg(\n    total_flights = ('num_of_flights_total', 'sum'),\n    total_delays = ('num_of_delays_total', 'sum')\n).reset_index()\n# Add the proportion of delayed flights in % column\nd_months['proportion_of_delayed'] = round(d_months['total_delays'] / d_months['total_flights'], 2)*100\n# Sort table by the 'months'\nmonth_dict = {'January':1,'February':2,'March':3, 'April':4, 'May':5, 'June':6, 'July':7, 'August':8, 'September':9, 'October':10, 'November':11, 'December':12}\nd_months = d_months.sort_values(['month'], key = lambda x : x.apply (lambda x : month_dict[x]), ascending=True).reset_index(drop=True)\n\n# Identify best and worst months\nbest_month = d_months.loc[d_months['proportion_of_delayed'].idxmin(), 'month']\nworst_month = d_months.loc[d_months['proportion_of_delayed'].idxmax(), 'month']\n\nd_months['color'] = np.where(d_months['month'] == best_month, 'blue', \n                             np.where(d_months['month'] == worst_month, 'red', 'gray'))\n\n# Draw chart\nchart = ggplot(d_months, aes(x='month', y='proportion_of_delayed', fill='color')) + \\\n    geom_bar(stat='identity') + \\\n      scale_fill_identity() + \\\n    ggtitle('Proportion of Delayed Flights by Month') + \\\n    xlab('Month') + \\\n    ylab('Proportion of Delayed Flights')\n\nchart\n\n\n\n   \n       \n       \n   \n   \n          \n   \n   \n\nChart shows The proportion of delays for each month and indicate best and worst of it",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 2"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project2.html#cq4-calculation-of-total-weather-related-flight-delays",
+    "href": "250_Projects/project2.html#cq4-calculation-of-total-weather-related-flight-delays",
+    "title": "Client Report - Late Flights & Missing Data (JSON)",
+    "section": "CQ4: Calculation of Total Weather-Related Flight Delays",
+    "text": "CQ4: Calculation of Total Weather-Related Flight Delays\nAccording to the BTS website, the “Weather” category only accounts for severe weather delays. Mild weather delays are not counted in the “Weather” category, but are actually included in both the “NAS” and “Late-Arriving Aircraft” categories. Your job is to create a new column that calculates the total number of flights delayed by weather (both severe and mild). You will need to replace all the missing values in the Late Aircraft variable with the mean. Show your work by printing the first 5 rows of data in a table. Use these three rules for your calculations:\na. 100% of delayed flights in the Weather category are due to weather b. 30% of all delayed flights in the Late-Arriving category are due to weather c. From April to August, 40% of delayed flights in the NAS category are due to weather. The rest of the months, the proportion rises to 65%\nWhile studying the data necessary for the calculations, it was discovered that flights delayed due to a late plane had incorrect data in the form of -999, which I corrected to the average value for this column. The remaining columns required for calculations had data correct for calculations.\n\n\nCode - Calculation of Total Weather-Related Flight Delays\n# Fill missing data\n# Use mean value for missing data\nmean_late_aircraft = df_flights.num_of_delays_late_aircraft.mean()\ndf_flights.replace(-999, mean_late_aircraft, inplace=True)\ndf_flights.fillna(mean_late_aircraft, inplace=True)\n# calculate delays by weather\npredata = df_flights.assign(delays_by_weather_months = lambda x: 0.4*x.num_of_delays_nas if str(x.month) in ['April', 'May', 'June', 'July', 'August'] else 0.65*x.num_of_delays_nas)\npredata = predata.assign(delays_by_weather = lambda x: x.num_of_delays_weather + 0.3*x.num_of_delays_late_aircraft + x.delays_by_weather_months)\n\n# Columns to include in the resut table\ncolumns_to_include = ['airport_code', 'airport_name', 'month', 'num_of_flights_total', 'num_of_delays_total', 'num_of_delays_weather', 'num_of_delays_late_aircraft', 'num_of_delays_nas', 'delays_by_weather']\n# Filter DataFrame to include only desired columns\ndata4 = predata[columns_to_include]\ntable4 = data4.head(5)\n\ntable4\n\n\n\n\n\n\n\n\n\nairport_code\nairport_name\nmonth\nnum_of_flights_total\nnum_of_delays_total\nnum_of_delays_weather\nnum_of_delays_late_aircraft\nnum_of_delays_nas\ndelays_by_weather\n\n\n\n\n0\nATL\nAtlanta, GA: Hartsfield-Jackson Atlanta Intern...\nJanuary\n35048\n8355\n448\n1017.844156\n4598\n3742.053247\n\n\n1\nDEN\nDenver, CO: Denver International\nJanuary\n12687\n3153\n233\n928.000000\n935\n1119.150000\n\n\n2\nIAD\n1017.844156\nJanuary\n12381\n2430\n61\n1058.000000\n895\n960.150000\n\n\n3\nORD\nChicago, IL: Chicago O'Hare International\nJanuary\n28194\n9178\n306\n2255.000000\n5415\n4502.250000\n\n\n4\nSAN\nSan Diego, CA: San Diego International\nJanuary\n7283\n1952\n56\n680.000000\n638\n674.700000",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 2"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project2.html#cq5-analysis-of-weather-related-flight-delays-by-airport",
+    "href": "250_Projects/project2.html#cq5-analysis-of-weather-related-flight-delays-by-airport",
+    "title": "Client Report - Late Flights & Missing Data (JSON)",
+    "section": "CQ5: Analysis of Weather-Related Flight Delays by Airport",
+    "text": "CQ5: Analysis of Weather-Related Flight Delays by Airport\nUsing the new weather variable calculated above, create a barplot showing the proportion of all flights that are delayed by weather at each airport. Describe what you learn from this graph.\nAccording to statistics and taking into account all data errors on the histogram, we can see the following: Siberian Federal District, ORD, ATL have approximately the same high percentage of flights delayed due to weather - 40+%. This means that when choosing these airports, you should pay attention to the expected weather when flying in that region. SAN Airport has the lowest percentage of flights delayed due to weather - 30%.\n\n\nCode - Filter data of Weather-Related Flight Delays by Airport\ndata5 = predata.groupby(\"airport_code\").agg(\n    total_num_of_delays = ('num_of_delays_total', 'sum'),\n    num_of_delays_weather = ('num_of_delays_weather', 'sum'),\n    numu_of_delays_late_aircraft = ('num_of_delays_late_aircraft', 'sum'),\n    num_of_delays_nas = ('num_of_delays_nas', 'sum'),\n    total_num_of_delays_by_weather = ('delays_by_weather', 'sum')\n).reset_index()\n# Add the 'proportion of delayed flights by weather' column\ndata5 = data5.assign(proportion_of_delayed_flights_by_weather = lambda x: round(x.total_num_of_delays_by_weather/x.total_num_of_delays, 2)*100)\n\nchart = ggplot(data5, aes(x='airport_code', y='proportion_of_delayed_flights_by_weather')) + \\\n    geom_bar(stat='identity') + \\\n    ggtitle('Proportion of Delayed Flights by Month') + \\\n    xlab('Airport code') + \\\n    ylab('Rate of delayed flights by weather in %')\n\nchart\n\n\n\n   \n       \n       \n   \n   \n          \n   \n   \n\nA chart showing Weather-Related Flight Delays by Airport",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 2"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project2.html#sq1-comparative-analysis-of-flight-delay-types",
+    "href": "250_Projects/project2.html#sq1-comparative-analysis-of-flight-delay-types",
+    "title": "Client Report - Late Flights & Missing Data (JSON)",
+    "section": "SQ1: Comparative Analysis of Flight Delay Types",
+    "text": "SQ1: Comparative Analysis of Flight Delay Types\nWhich delay is the worst delay? Create a similar analysis as above for Weahter Delay with: Carrier Delay and Security Delay. Compare the proportion of delay for each of the three categories in a Chart and a Table. Describe your results.\nWhen examining the data needed for the calculations, it was discovered that the required columns had incorrect data, which I corrected to the average of that column. According to statistics and taking into account all the data errors on the histogram, we see the following: the largest number of delays is associated with weather - 39%, the smallest number of delays is associated with security - almost 0%.\n\n\nCode - Filter data for Comparison of Delay Percentage by Delay Type\n# Clear num_of_delays_carrier\npredata['Numeric_Column'] = pd.to_numeric(predata['num_of_delays_carrier'], errors='coerce')\nmean_value = predata['Numeric_Column'].mean()\npredata['num_of_delays_carrier'] = predata['Numeric_Column'].fillna(mean_value)\n# Clear num_of_delays_security\npredata['Numeric_Column'] = pd.to_numeric(predata['num_of_delays_security'], errors='coerce')\nmean_value = predata['Numeric_Column'].mean()\npredata['num_of_delays_security'] = predata['Numeric_Column'].fillna(mean_value)\n\npredata['Numeric_Column'] = 1\ndata6 = predata.groupby(\"Numeric_Column\").agg(\n    total_num_of_delays = ('num_of_delays_total', 'sum'),\n    num_of_delays_weather = ('num_of_delays_weather', 'sum'),\n    numu_of_delays_late_aircraft = ('num_of_delays_late_aircraft', 'sum'),\n    num_of_delays_nas = ('num_of_delays_nas', 'sum'),\n    total_num_of_delays_by_weather = ('delays_by_weather', 'sum'),\n    num_of_delays_carrier = ('num_of_delays_carrier', 'sum'),\n    num_of_delays_security = ('num_of_delays_security', 'sum')\n).reset_index()\n# Add the 'proportion of delayed flights by weather' column\ndata6 = data6.assign(rate_of_delayed_flights_by_weather = lambda x: round(x.total_num_of_delays_by_weather/x.total_num_of_delays, 2)*100)\ndata6 = data6.assign(rate_of_delayed_flights_by_carrier = lambda x: round(x.num_of_delays_carrier/x.total_num_of_delays, 2)*100)\ndata6 = data6.assign(rate_of_delayed_flights_by_security = lambda x: round(x.num_of_delays_security/x.total_num_of_delays, 2)*100)\n# Columns to include in the resut table\ncolumns_to_include = ['rate_of_delayed_flights_by_weather', 'rate_of_delayed_flights_by_carrier', 'rate_of_delayed_flights_by_security']\n# Filter DataFrame to include only desired columns\ndata = data6[columns_to_include]\ndata\n\n\n\n\n\n\n\n\n\nrate_of_delayed_flights_by_weather\nrate_of_delayed_flights_by_carrier\nrate_of_delayed_flights_by_security\n\n\n\n\n0\n39.0\n21.0\n0.0\n\n\n\n\n\n\n\n\n\nCode - Creating graph for Comparison of Delay Percentage by Delay Type\ndelay_comparison = data6[['Numeric_Column', 'rate_of_delayed_flights_by_carrier', 'rate_of_delayed_flights_by_security', 'rate_of_delayed_flights_by_weather']]\n\ndelay_comparison_melted = delay_comparison.melt(id_vars='Numeric_Column', \n                                                var_name='Delay_Type', \n                                                value_name='Delay_Percentage')\n\n# График с пропорциями задержек по типам\nchart = ggplot(delay_comparison_melted, aes(x='Delay_Type', y='Delay_Percentage', fill='Delay_Type')) + \\\n    geom_bar(stat='identity', position='dodge') + \\\n    ggtitle('Comparison of Delay Types by Delay Type') + \\\n    xlab('Delay_Type') + \\\n    ylab('Percentage of Delays') + \\\n    scale_fill_brewer(type='qual', palette='Set1')\n\nchart\n\n\n\n   \n       \n       \n   \n   \n          \n   \n   \n\nA chart showing the dependence of delay persentage by delay type",
     "crumbs": [
       "DS250 Projects",
       "Project 2"
