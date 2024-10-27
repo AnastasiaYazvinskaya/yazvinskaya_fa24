@@ -83,7 +83,7 @@ _In my understanding, the worst airport is the one that has the most delayed fli
 
 ```{python}
 #| label: CQ2-table
-#| code-summary: Code - 
+#| code-summary: Code - Analysis of Airport Delays
 #| tbl-cap: "Rating of airports"
 #| tbl-cap-location: top
 # Add the average delay time in hours column
@@ -110,8 +110,8 @@ _In this graph we can see the percentage of delayed flights for each month. So w
 
 ```{python}
 #| label: CQ3-chart
-#| code-summary: Code - and draw a graph
-#| fig-cap: ""
+#| code-summary: Code - Analyse data for each month for minimizing flight delays
+#| fig-cap: "Chart shows The proportion of delays for each month and indicate best and worst of it"
 #| fig-align: center
 # clear wrong data (February)
 df_flights.replace('Febuary', 'February', inplace=True)
@@ -158,8 +158,7 @@ _While studying the data necessary for the calculations, it was discovered that 
 
 ```{python}
 #| label: CQ4-chart
-#| code-summary: Code - Filter data by name Dominic and draw a graph
-#| fig-cap: "A chart showing the history of the name Dominic before the first 'Fast and Furious' release and throughout all releases"
+#| code-summary: Code - Calculation of Total Weather-Related Flight Delays
 #| fig-align: center
 # Fill missing data
 # Use mean value for missing data
@@ -187,8 +186,8 @@ _According to statistics and taking into account all data errors on the histogra
 
 ```{python}
 #| label: CQ5-chart
-#| code-summary: Code - Filter data by name Dominic and draw a graph
-#| fig-cap: "A chart showing the history of the name Dominic before the first 'Fast and Furious' release and throughout all releases"
+#| code-summary: Code - Filter data of Weather-Related Flight Delays by Airport
+#| fig-cap: "A chart showing Weather-Related Flight Delays by Airport"
 #| fig-align: center
 data5 = predata.groupby("airport_code").agg(
     total_num_of_delays = ('num_of_delays_total', 'sum'),
@@ -217,7 +216,7 @@ _When examining the data needed for the calculations, it was discovered that the
 
 ```{python}
 #| label: ST1-table
-#| code-summary: Code - Filter data by name Elliot and year (>=1950) and draw a graph
+#| code-summary: Code - Filter data for Comparison of Delay Percentage by Delay Type
 #| fig-align: center
 # Clear num_of_delays_carrier
 predata['Numeric_Column'] = pd.to_numeric(predata['num_of_delays_carrier'], errors='coerce')
@@ -246,13 +245,13 @@ data6 = data6.assign(rate_of_delayed_flights_by_security = lambda x: round(x.num
 columns_to_include = ['rate_of_delayed_flights_by_weather', 'rate_of_delayed_flights_by_carrier', 'rate_of_delayed_flights_by_security']
 # Filter DataFrame to include only desired columns
 data = data6[columns_to_include]
-data6
+data
 ```
 
 ```{python}
 #| label: SQ1-chart
-#| code-summary: Code - Filter data by name Dominic and draw a graph
-#| fig-cap: "A chart showing the history of the name Dominic before the first 'Fast and Furious' release and throughout all releases"
+#| code-summary: Code - Creating graph for Comparison of Delay Percentage by Delay Type
+#| fig-cap: "A chart showing the dependence of delay persentage by delay type"
 #| fig-align: center
 delay_comparison = data6[['Numeric_Column', 'rate_of_delayed_flights_by_carrier', 'rate_of_delayed_flights_by_security', 'rate_of_delayed_flights_by_weather']]
 

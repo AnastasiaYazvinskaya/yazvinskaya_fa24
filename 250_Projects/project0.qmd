@@ -87,24 +87,6 @@ chart
 
 ```
 
-## Task 2: Recreate the example chart
-
-__Recreate the example chart from PY4DS: CH2 Data Visualization of the textbook.__
-
-- _include figures in chunks and discuss your findings in the figure._
-
-```{python}
-#| label: Q1-chart
-#| code-summary: plot example
-#| fig-cap: "My useless chart"
-#| fig-align: center
-# Include and execute your code here
-
-(
-  ggplot(df.head(500), aes(x='displ', y='hwy')) + geom_point()
-)
-```
-
 ## Task 3: Table used to create the above chart
 
 __Include the table created from PY4DS: CH2 Data Visualization used to create the above chart__
@@ -117,72 +99,9 @@ __Include the table created from PY4DS: CH2 Data Visualization used to create th
 #| tbl-cap: "table example"
 #| tbl-cap-location: top
 # Include and execute your code here
-mydat = (df.head(1000)
-    .groupby('manufacturer')
-    .sum()
-    .reset_index()
-    .tail(10)
-    .filter(["manufacturer","displ","cty", "hwy"])
-)
 
-display(mydat)
 
 ```
-
-## Task 4: Update the _quarto.yml
-
-__Update the _quarto.yml file in course work portfolio:__
-__a. update the title to includ your name__
-__b. update the site url to your published site url (this will be in the deployment section in GitHub)__
-__c. update the repo-url to your GitHub repository url__
-__d. update the issue-url to your GitHub issue url (its the same as the repo url but with /issues/new at the end)__
-__e. update the page-footer left to include your name__
-__f. update the page-footer right href to include your LinkedIn url (optional)__
-
-- _PROVIDE TABLES THAT HELP ADDRESS THE QUESTIONS AND TASKS (IF APPLICABLE)._
-
-```{python}
-#| label: Q1-table2
-#| code-summary: table example
-#| tbl-cap: "table example"
-#| tbl-cap-location: top
-# Include and execute your code here
-mydat = (df.head(1000)
-    .groupby('manufacturer')
-    .sum()
-    .reset_index()
-    .tail(10)
-    .filter(["manufacturer","displ","cty", "hwy"])
-)
-
-display(mydat)
-
-```
-
-## Task 5: Update the resume.qmd 
-
-__Update the resume.qmd file in course work portfolio to include your updated resume using markdown. See P4DS: CH30 Markdown__
-
-- _PROVIDE TABLES THAT HELP ADDRESS THE QUESTIONS AND TASKS (IF APPLICABLE)._
-
-```{python}
-#| label: Q1-table3
-#| code-summary: table example
-#| tbl-cap: "table example"
-#| tbl-cap-location: top
-# Include and execute your code here
-mydat = (df.head(1000)
-    .groupby('manufacturer')
-    .sum()
-    .reset_index()
-    .tail(10)
-    .filter(["manufacturer","displ","cty", "hwy"])
-)
-
-display(mydat)
-
-```
-
 
 
 
