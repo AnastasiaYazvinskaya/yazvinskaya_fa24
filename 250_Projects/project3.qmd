@@ -53,7 +53,7 @@ con = sqlite3.connect(sqlite_file)
 
 __Write an SQL query to create a new dataframe about baseball players who attended BYU-Idaho. The new table should contain five columns: playerID, schoolID, salary, and the yearID/teamID associated with each salary. Order the table by salary (highest to lowest) and print out the table in your report.__
 
-_According to the data we have information only on two students. Analyzing each of them we see that the player with ID stephga01 had a salary increase from 1997 to 2001, after which his salary fell. The player with ID lindsma01 from 2007 to 2009 playing for the FLO team had a small salary increase. But after moving to another team in 2010 his salary increased 4 times. And although in the end by 2014 his salary increased more than 2 times, after 2010 he changed 2 more teams until in 2013 he joined the CHA team with a salary decrease, which was compensated a year later in 2014._
+_Based on the data we have, we see that three players were BYU-Idaho students, but only two of them have salary information available. Analyzing each of them we see that the player with ID stephga01 had a salary increase from 1997 to 2001, after which his salary fell. The player with ID lindsma01 from 2007 to 2009 playing for the FLO team had a small salary increase. But after moving to another team in 2010 his salary increased 4 times. And although in the end by 2014 his salary increased more than 2 times, after 2010 he changed 2 more teams until in 2013 he joined the CHA team with a salary decrease, which was compensated a year later in 2014._
 
 ```{python}
 #| label: CQ1-table
@@ -61,13 +61,14 @@ _According to the data we have information only on two students. Analyzing each 
 #| tbl-cap: "BYU-Idaho players salaries"
 #| tbl-cap-location: top
 q = '''
-    SELECT DISTINCT sal.playerID, sal.salary, sal.yearID, sal.teamID
-    FROM salaries sal
-    JOIN collegeplaying cp ON cp.playerID = sal.playerID
+    SELECT DISTINCT cp.playerID, sal.salary, sal.yearID, sal.teamID
+    FROM collegeplaying cp
     JOIN schools sc ON cp.schoolID = sc.schoolID
+    LEFT JOIN salaries sal ON cp.playerID = sal.playerID
     WHERE sc.name_full='Brigham Young University-Idaho'
     ORDER BY sal.salary DESC
     '''
+
 table = pd.read_sql_query(q,con)
 table
 ```
