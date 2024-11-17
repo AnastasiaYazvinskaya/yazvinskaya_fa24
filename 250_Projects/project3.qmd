@@ -1,7 +1,7 @@
 ---
-title: "Client Report - [Insert Project Title]"
+title: "Client Report - Finding Relationships in Baseball"
 subtitle: "Course DS 250"
-author: "[STUDENT NAME]"
+author: "Anastasia Yazvinskaya"
 format:
   html:
     self-contained: true
@@ -25,4 +25,253 @@ execute:
     
 ---
 
-### Paste in a template
+```{python}
+#| label: libraries
+#| include: false
+import pandas as pd
+import numpy as np
+import sqlite3
+from lets_plot import *
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+
+## Elevator pitch
+
+_Achievements in sports are always an analysis of several areas. Unfortunately, the overall percentage of victories for all time does not show ideal indicators for a player, since one could play only one game and the team could win, while another player will play 10 games and lose at least one of them, already put him in second place. Also important are other factors when comparing players and teams, which I considered in this project, during the study of data analysis through SQL queries._
+
+```{python}
+#| label: project-data
+#| code-summary: Connect to database with project data
+
+sqlite_file = 'lahmansbaseballdb.sqlite'
+con = sqlite3.connect(sqlite_file)
+```
+
+## CQ1: BYU-Idaho baseball players
+
+__Write an SQL query to create a new dataframe about baseball players who attended BYU-Idaho. The new table should contain five columns: playerID, schoolID, salary, and the yearID/teamID associated with each salary. Order the table by salary (highest to lowest) and print out the table in your report.__
+
+_According to the data we have information only on two students. Analyzing each of them we see that the player with ID stephga01 had a salary increase from 1997 to 2001, after which his salary fell. The player with ID lindsma01 from 2007 to 2009 playing for the FLO team had a small salary increase. But after moving to another team in 2010 his salary increased 4 times. And although in the end by 2014 his salary increased more than 2 times, after 2010 he changed 2 more teams until in 2013 he joined the CHA team with a salary decrease, which was compensated a year later in 2014._
+
+```{python}
+#| label: CQ1-table
+#| code-summary: Code - Find all players from BYU-Idaho and their Salaries by year and team
+#| tbl-cap: "BYU-Idaho players salaries"
+#| tbl-cap-location: top
+q = '''
+    SELECT DISTINCT sal.playerID, sal.salary, sal.yearID, sal.teamID
+    FROM salaries sal
+    JOIN collegeplaying cp ON cp.playerID = sal.playerID
+    JOIN schools sc ON cp.schoolID = sc.schoolID
+    WHERE sc.name_full='Brigham Young University-Idaho'
+    ORDER BY sal.salary DESC
+    '''
+table = pd.read_sql_query(q,con)
+table
+```
+
+## CQ2: Players batting average
+
+__This three-part question requires you to calculate batting average (number of hits divided by the number of at-bats)__
+
+__a. Write an SQL query that provides playerID, yearID, and batting average for players with at least 1 at bat that year. Sort the table from highest batting average to lowest, and then by playerid alphabetically. Show the top 5 results in your report.__
+
+_In this list we see the top 5 players who have 100% batting in certain years. However, these figures may not be entirely correct, as they take into account players who had at least one batting and if it was successful, they became the leaders in the list._
+
+```{python}
+#| label: CQ2-table-a
+#| code-summary: Code - Finding Top-5 players on batting average
+#| tbl-cap: "Top-5 players on batting average"
+#| tbl-cap-location: top
+q = '''
+    SELECT playerID, yearID,
+      ROUND((1.0*H/AB), 2) AS batting_avr
+    FROM batting
+    WHERE AB >= 1
+    ORDER BY batting_avr DESC, playerID ASC
+    LIMIT 5
+    '''
+table = pd.read_sql_query(q,con)
+table
+```
+
+__b. Use the same query as above, but only include players with at least 10 at bats that year. Print the top 5 results.__
+
+_In this list we see the top 5 players who have the highest batting average in certain years. By counting players who have at least 10 batting averages this year we have improved the accuracy of the table by looking at the results on multiple attempts._
+
+```{python}
+#| label: CQ2-table-b
+#| code-summary: Code - Finding Top-5 players on batting average with at least 10 at bats each year
+#| tbl-cap: "Top-5 players on batting average (at least 10 at bats that year)"
+#| tbl-cap-location: top
+q = '''
+    SELECT playerID, yearID,
+      ROUND((1.0*H/AB), 2) AS batting_avr
+    FROM batting
+    WHERE AB >= 10
+    ORDER BY batting_avr DESC, playerID ASC
+    LIMIT 5
+    '''
+table = pd.read_sql_query(q,con)
+table
+```
+
+__c. Now calculate the batting average for players over their entire careers (all years combined). Only include players with at least 100 at bats, and print the top 5 results.__
+
+_In this list we see the top 5 players who have the highest batting average throughout their playing career. Considering players who have at least 100 batting averages throughout their career, we have improved the accuracy of the table by looking at the results over multiple attempts throughout their playing career._
+
+```{python}
+#| label: CQ2_table_c
+#| code-summary: Code - Finding Top-5 players on batting average over their entire careers with at least 100 at bats
+#| tbl-cap: "Top-5 players on batting average over their entire careers (At least 100 at bats)"
+#| tbl-cap-location: top
+q = '''
+    SELECT playerID,
+      ROUND((1.0*SUM(H)/SUM(AB)), 2) AS batting_avr
+    FROM batting
+    GROUP BY playerID
+    HAVING SUM(AB) >= 100
+    ORDER BY batting_avr DESC, playerID ASC
+    LIMIT 5
+    '''
+table = pd.read_sql_query(q,con)
+table
+```
+
+## CQ3: Comparison of two basketball teams
+
+__Pick any two baseball teams and compare them using a metric of your choice (average salary, home runs, number of wins, etc). Write an SQL query to get the data you need, then make a graph using Lets-Plot to visualize the comparison. What do you learn?__
+
+_I compared the top two teams by win percentage relative to their salaries (with available salary data). Among the top 2 teams by win percentage, OAC is in first place. However, regarding salaries, we see that their average salary is more than two times less than that of the number 2 team. This gap began in 1996. Before that year, the average salary in both teams was approximately the same, after which UAC reduced the salary, and BRS, on the contrary, increased it. However, this did not affect the results much. Although it is also worth separately considering the graph of win percentage for these years. Perhaps such a salary increase was strategically important for attracting more experienced players, which in general, in the history of the team, helped them become more stable in recent years._
+
+```{python}
+#| label: CQ3_chart
+#| code-summary: Code - Finding Average Salaries for each year for two best teams by win rate.
+#| fig-cap: "Comparison of Two Best Teams (by win rate) by Salary"
+#| fig-align: center
+q = '''
+    WITH bestteams AS (
+      SELECT t.teamID, tf.franchName,
+        SUM(t.W) * 1.0 / SUM(t.G) AS win_rate
+      FROM salaries slr
+      JOIN teams t ON slr.teamID = t.teamID
+      JOIN teamsfranchises tf ON t.teamID = tf.franchID
+      GROUP BY t.teamID
+      ORDER BY win_rate DESC
+      LIMIT 2
+    )
+    SELECT bt.franchName, slr.yearID as year, ROUND(AVG(slr.salary), 2) AS salary
+    FROM bestteams bt
+    JOIN salaries slr ON bt.teamID = slr.teamID
+    GROUP BY bt.teamID, slr.yearID
+    '''
+table = pd.read_sql_query(q,con)
+
+
+# Draw chart
+chart = (ggplot(table, aes('year', 'salary', color='franchName')) + \
+        geom_line(size=1.5) + \
+        geom_point(size=3)) + \
+        scale_x_continuous(format="d") + \
+        ggtitle(f'Comparison of Two Best Teams by Salary') + \
+        labs(
+          x='Year',
+          y='Salary',
+          color='Team names')
+
+chart
+```
+
+## SQ1: Advanced Salary Distribution by Position (with Case Statement)
+
+__Write an SQL query that provides a summary table showing the average salary for players in each position (e.g., pitcher, catcher, outfielder) across all yearslr. Include the following columns:__
+* __position__
+* __average_salary__
+* __total_players__
+* __highest_salary__
+
+__The highest_salary column should display the highest salary ever earned by a player in that position. If no player in that position has a recorded salary, display “N/A” for the highest salary.__
+
+__Additionally, create a new column called salary_category using a case statement:__
+* __If the average salary is above $1 million, categorize it as “High Salary.”__
+* __If the average salary is between $500,000 and $1 million, categorize it as “Medium Salary.”__
+* __Otherwise, categorize it as “Low Salary.”__
+
+__Order the table by average salary in descending order.__
+
+__Print the top 10 rows of this summary table.__
+
+_All positions have a high salary on average. Although it is interesting to note that at their maximum there are 4 positions that had identical salaries._
+
+```{python}
+#| label: ST1-table
+#| code-summary: Code - Find Top-10 positions by average salary
+#| tbl-cap: "Top-10 positions by average salary"
+#| tbl-cap-location: top
+q = '''
+    SELECT 
+      fld.pos AS position,
+      ROUND(AVG(slr.salary), 2) AS avg_salary,
+      COUNT(DISTINCT slr.playerID) AS total_players,
+      CASE 
+          WHEN MAX(slr.salary) IS NULL THEN 'N/A'
+          ELSE CAST(MAX(slr.salary) AS TEXT)
+      END AS highest_salary,
+      CASE 
+          WHEN AVG(slr.salary) > 1000000 THEN 'High Salary'
+          WHEN AVG(slr.salary) BETWEEN 500000 AND 1000000 THEN 'Medium Salary'
+          ELSE 'Low Salary'
+      END AS salary_category
+    FROM fielding fld
+    JOIN salaries slr 
+        ON fld.playerID = slr.playerID
+    GROUP BY fld.pos
+    ORDER BY avg_salary DESC
+    LIMIT 10
+    '''
+table = pd.read_sql_query(q,con)
+table
+```
+
+## SQ2: Advanced Career Longevity and Performance (with Subqueries)
+
+__Calculate the average career length (in years) for players who have played at least one game. Then, identify the top 10 players with the longest careers (based on the number of years they played). Include their:__
+* __playerID__
+* __first_name__
+* __last_name__
+* __career_length__
+
+__The career_length should be calculated as the difference between the maximum and minimum yearID for each player.__
+
+_All players in the table have been playing for teams for over 25 years. The most experienced player has been playing for 36 years._
+
+```{python}
+#| label: ST2-table
+#| code-summary: Code - Find Top-10 players with longest carrers
+#| tbl-cap: "Top-10 players with longest carrers"
+#| tbl-cap-location: top
+q = '''
+    SELECT 
+        app.playerID,
+        ppl.nameFirst AS first_name,
+        ppl.nameLast AS last_name,
+        (MAX(app.yearID) - MIN(app.yearID) + 1) AS career_length
+    FROM appearances app
+    JOIN people ppl ON app.playerID = ppl.playerID
+    GROUP BY app.playerID
+    HAVING SUM(G_all) >= 1
+    ORDER BY career_length DESC
+    LIMIT 10
+    '''
+table = pd.read_sql_query(q,con)
+table
+```
+
+```{python}
+#| label: closing-connection
+#| code-summary: Closing connection to database
+
+con.close()
+```

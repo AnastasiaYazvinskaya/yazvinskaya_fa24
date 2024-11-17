@@ -48,6 +48,10 @@ _This project helped me understand that it is always worth checking data for cor
 
 # Include and execute your code here
 df_flights = pd.read_json("https://github.com/byuidatascience/data4missing/raw/master/data-raw/flights_missing/flights_missing.json")
+na_month_count = df_flights.query('month == "n/a"')
+len(na_month_count)
+missing_values_count = df_flights.isna().sum()
+missing_values_count
 ```
 
 ## CQ1: Standardization of Missing Data Types
